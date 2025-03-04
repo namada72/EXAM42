@@ -1,20 +1,19 @@
 #include "Warlock.hpp"
 #include <iostream>
 
-int main {
-	
-	Warlock const mago1("Dad","El padre");
-	mago1.introduce();
-	std::cout << mago1.getName() << " - " << mago1.getTitle() << std::endl;
+int main(void) {
+  Warlock const richard("Richard", "Mistress of Magma");
+  richard.introduce();
+  std::cout << richard.getName() << " - " << richard.getTitle() << std::endl;
 
-	Warlock *mago2 = new Warlock("Hijo", "El mejor");
-	mago2->introduce();
-	std::cout << mago2.getName() << " - " << mago2.getTitle() << std::endl;
-	mago2->setTitle("El aprendiz");
-	mago2->introduce();
+  Warlock* jack = new Warlock("Jack", "the Long");
+  jack->introduce();
+  jack->setTitle("the Mighty");
+  jack->introduce();
 
-	delete mago2;
-	return 0;
+  delete jack;
+
+  return (0);
 }
 
 
