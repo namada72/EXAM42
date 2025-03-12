@@ -11,7 +11,7 @@ const std::string & ATarget::getType() const{ return _type; }
 
 ATarget::ATarget(ATarget const &src) : _type(src._type){}
 
-ATarget::ATarget &operator=(ATarget const &src){
+ATarget &ATarget::operator=(ATarget const &src){
 	if (this != &src){
 		_type = src._type;
 	}

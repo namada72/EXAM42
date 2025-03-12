@@ -13,8 +13,8 @@ class ATarget {
 		
 	public:
 		ATarget(std::string const &type);
-		ATarget(ASpell const &src);
-		ATarget &operator=(ASpell const &src);
+		ATarget(ATarget const &src);
+		ATarget &operator=(ATarget const &src);
 		virtual ~ATarget();
 
 		const std::string & getType() const;

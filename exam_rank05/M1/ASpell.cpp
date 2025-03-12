@@ -7,17 +7,20 @@ ASpell::~ASpell(){
 	//std::cout << _name << ": My job here is done!" << std::endl;
 }
 
+ASpell::ASpell(ASpell const &src) : _name(src._name),_effects(src._effects){} 
+
+ASpell &ASpell::operator=(ASpell const &src) {
+	if(this != &src)
+	{
+		_name = src._name;
+		_effects = src._effects;
+	}
+	return *this;
+}
+
 const std::string & ASpell::getName() const{ return _name; }
 		
 const std::string & ASpell::getEffects() const { return _effects; }
-
-
-void ASpell::setTitle(std::string const &newtitle) {_title = newtitle; }
-
-void ASpell::introduce() const{
-std::cout << _name << ": I am " << _name << ", " << _title << "!" << std::endl;
-}
-
 
 void ASpell::launch (ATarget const & target) const {
 	target.getHitBySpell(*this);
