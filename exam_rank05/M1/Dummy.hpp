@@ -1,5 +1,5 @@
 # ifndef DUMMY_HPP
-# define DUMMY_HPP
+#define DUMMY_HPP
 
 #include <iostream>
 #include <string>
@@ -15,9 +15,8 @@ class Dummy : public ATarget {
 		Dummy &operator=(Dummy const &src);
 		virtual ~Dummy();
 
-		virtual Dummy* clone() const;
+		ATarget* clone() const;
 		
 };
 #endif
-
 

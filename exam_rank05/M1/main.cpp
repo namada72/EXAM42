@@ -3,11 +3,13 @@
 #include "Dummy.hpp"
 #include "Fwoosh.hpp"
 
+int main(void){
+
 Warlock richard("Richard", "the Titled");
 
 Dummy bob;
 Fwoosh* fwoosh = new Fwoosh();
-richard.learn Spell(fwoosh);
+richard.learnSpell(fwoosh);
 
 richard.introduce();
 richard.launchSpell("Fwoosh", bob);

@@ -1,4 +1,5 @@
 #include "Dummy.hpp"
+
 Dummy::Dummy() : ATarget("Target Practice Dummy") {
 	//std::cout << _name << ": This looks like another boring day." << std::endl;	
 }
@@ -16,6 +17,6 @@ Dummy &Dummy::operator=(Dummy const &src){
 	return *this;
 }
 
-*Dummy Dummy::clone() const {
+ATarget *Dummy::clone() const {
 	return new Dummy(*this);
 }
