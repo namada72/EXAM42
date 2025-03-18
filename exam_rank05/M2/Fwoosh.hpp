@@ -1,7 +1,5 @@
 #pragma once
 
-// # ifndef FWOOSH_HPP
-// # define FWOOSH_HPP
 
 #include <iostream>
 #include <string>
@@ -22,6 +20,5 @@ class Fwoosh : public ASpell {
 
 		
 };
-// #endif
 
 

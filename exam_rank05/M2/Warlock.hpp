@@ -1,13 +1,11 @@
 #pragma once
 
-// # ifndef WARLOCK_HPP
-// # define WARLOCK_HPP
 
 #include <iostream>
 #include <string>
 #include <map>
 #include "ASpell.hpp"
-#include "ATarget.hpp"
+#include "SpellBook.hpp"
 
 class Warlock {
 	private:
@@ -18,7 +16,8 @@ class Warlock {
 	
 		Warlock &operator=(Warlock const &src);
 
-		std::map<std::string,ASpell*> _spells;
+		//std::map<std::string,ASpell*> _spells;
+		SpellBook _spellBook;
 	
 	public:
 		Warlock(std::string const &name, std::string const &title);
@@ -37,6 +36,5 @@ class Warlock {
 
 
 };
-// #endif
 
 
