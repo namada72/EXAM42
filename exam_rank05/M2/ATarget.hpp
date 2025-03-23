@@ -1,8 +1,5 @@
 #pragma once
 
-// # ifndef ATARGET_HPP
-// # define ATARGET_HPP
-
 #include <iostream>
 #include <string>
 #include "ASpell.hpp"
@@ -27,6 +24,3 @@ class ATarget {
 
 		
 };
-// #endif
-
-

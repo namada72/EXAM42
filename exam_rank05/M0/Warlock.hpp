@@ -1,5 +1,5 @@
-# ifndef WARLOCK_HPP
-# define WARLOCK_HPP
+
+#pragma once
 
 #include <iostream>
 #include <string>
@@ -21,6 +21,3 @@ class Warlock {
 
 		void introduce() const;
 };
-#endif
-
-

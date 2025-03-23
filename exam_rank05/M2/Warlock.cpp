@@ -5,7 +5,7 @@ Warlock::Warlock(std::string const &name, std::string const &title) : _name(name
 }
 
 Warlock::~Warlock(){
-	// std::cout << _name << ": My job here is done!" << std::endl;
+	std::cout << _name << ": My job here is done!" << std::endl;
 	// //libero memoria hechizos aprendidos
 	// for(std::map<std::string, ASpell*>::iterator it = _spells.begin(); it != _spells.end(); ++it){
 	// delete it->second;
