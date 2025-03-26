@@ -18,6 +18,6 @@ Fwoosh &Fwoosh::operator=(Fwoosh const &src) {
 	return (*this);
 }
 
-Fwoosh* Fwoosh::clone() const {
+ASpell* Fwoosh::clone() const {
 	return new Fwoosh(*this);	
 }

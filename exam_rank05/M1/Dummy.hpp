@@ -14,6 +14,6 @@ class Dummy : public ATarget {
 		Dummy &operator=(Dummy const &src);
 		virtual ~Dummy();
 
-		ATarget* clone() const;
+		virtual ATarget* clone() const;
 		
 };

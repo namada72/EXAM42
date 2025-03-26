@@ -15,7 +15,7 @@ class Fwoosh : public ASpell {
 		Fwoosh &operator=(Fwoosh const &src);
 		virtual ~Fwoosh();
 
-		virtual Fwoosh* clone() const;
+		virtual ASpell* clone() const;
 
 		
 };
