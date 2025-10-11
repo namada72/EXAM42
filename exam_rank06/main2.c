@@ -118,6 +118,7 @@ int main(int ac, char **av) {
 
             if (fd == sockfd) {
                 int connfd = accept(sockfd, NULL, NULL); //cambio porque no necesito el puerto del cliente para este ejercicio y as'i simplifico y saco el cli
+                /*No hago nada si el accept falla, en el ejemplo el servidor te echa ,Yo continuo*/
                 if (connfd < 0) continue;
                 if (connfd > max_fd) max_fd = connfd;
                 clients[connfd].fd = connfd;
