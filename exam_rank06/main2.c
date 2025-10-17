@@ -77,8 +77,8 @@ char *str_join(char *buf, char *add) {
 }
 
 int main(int ac, char **av) {
-    //int sockfd, connfd, len; //Elimino len y connfd
-    int sockfd;
+    //int sockfd, connfd, len; //Elimino len
+    int sockfd, connfd;
 	//struct sockaddr_in servaddr, cli; //Elimino cli
     struct sockaddr_in servaddr; 
     
@@ -90,7 +90,7 @@ int main(int ac, char **av) {
     if (sockfd == -1)
         err(NULL, 1);//
     
-    max_fd = sockfd;//
+    max_fd = sockfd;// Guarda el descriptor más alto que existe por ahora
     bzero(&servaddr, sizeof(servaddr));
     servaddr.sin_family = AF_INET;
     servaddr.sin_addr.s_addr = htonl(2130706433);
@@ -99,7 +99,7 @@ int main(int ac, char **av) {
     if (bind(sockfd, (const struct sockaddr *)&servaddr, sizeof(servaddr)) != 0)
         err(NULL, 1);//
     if (listen(sockfd, 128) != 0) //original 10 conexiones, se puede ampliar
-        err(NULL, 1);
+        err(NULL, 1);//
 
     /*Preparamos el conjunto de descriptores para select() con solo el socket del servidor,
     y limpiamos el array de clientes para empezar con todo vacío*/
@@ -115,22 +115,26 @@ int main(int ac, char **av) {
         for (int fd = 0; fd <= max_fd; fd++) {
             if (!FD_ISSET(fd, &read_set))
                 continue;
-
+            //el socket del servidor tiene actividad
             if (fd == sockfd) {
-                int connfd = accept(sockfd, NULL, NULL); //cambio porque no necesito el puerto del cliente para este ejercicio y as'i simplifico y saco el cli
+                connfd = accept(sockfd, NULL, NULL); //cambio porque no necesito el puerto del cliente para este ejercicio y as'i simplifico y saco el cli
                 /*No hago nada si el accept falla, en el ejemplo el servidor te echa ,Yo continuo*/
                 if (connfd < 0) continue;
                 if (connfd > max_fd) max_fd = connfd;
+                //Guardo el nuevo
                 clients[connfd].fd = connfd;
-                clients[connfd].id = next_id++;
+                clients[connfd].id = next_id++; 
                 clients[connfd].buf = NULL;
                 FD_SET(connfd, &active_set);
                 char msg[100];
                 sprintf(msg, "server: client %d just arrived\n", clients[connfd].id);
                 send_all(connfd, msg);
-            } else {
+            }
+            //cliente existente envia algo
+            else {
                 char buf[1024];
                 int r = recv(fd, buf, sizeof(buf) - 1, 0);
+                //cliente cerro conexion
                 if (r <= 0) {
                     char msg[100];
                     sprintf(msg, "server: client %d just left\n", clients[fd].id);
@@ -139,11 +143,14 @@ int main(int ac, char **av) {
                     close(fd);
                     free(clients[fd].buf);
                     clients[fd].fd = 0;
-                } else {
+                }
+                //Cliente envia datos
+                else {
                     buf[r] = 0;
                     clients[fd].buf = str_join(clients[fd].buf, buf);
                     if (!clients[fd].buf)
                         err(NULL, 1);
+                    //extraigo mensaje hasta \n
                     char *msg;
                     while (extract_message(&clients[fd].buf, &msg) == 1) {
                         char prefix[50];
