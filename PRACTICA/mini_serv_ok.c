@@ -169,10 +169,12 @@ int main(int ac, char **av) {
 						char *full = malloc(strlen(prefix)+strlen(msg) +1);
 						if (!full)
 							err(NULL,1);
+						full[0] = 0;
 						strcat(full,prefix);
 						strcat(full, msg);
-						send_all(fd,msg);
+						send_all(fd,full);
 						free(full);
+						free(msg);
 					}
 				}
 			}
